@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+  pre_build:
+    commands:
+      - npm install
+  build:
+    commands:
+      - npm test
+      # Your build steps here, if any
+  post_build:
+    commands:
+      - npm install aws-sdk
+      # Any additional post-build commands, such as zipping the function code
+      - zip -r add-product.zip .
+      - mv add-product.zip ../
+artifacts:
+  files:
+    - ../add-product.zip
