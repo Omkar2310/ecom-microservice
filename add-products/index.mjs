@@ -18,7 +18,7 @@ export const handler = async (event) => {
       updatedAt: null,
     },
   };
-
+  console.log("Hi Trying deploy here");
   try {
     await dynamoDB.put(params).promise();
 

@@ -36,6 +36,8 @@ jobs:
               --deployment-group-name ecom-deploy-add \
               --s3-location bucket=deployment-ecom,key=add-products.zip,bundleType=zip \
               --region us-east-1
+              --file-exists-behavior OVERWRITE \
+              --appspec-file appspec.yml
 
   deploy_update_product:
     runs-on: ubuntu-latest
@@ -47,13 +49,13 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y awscli
-      
+
       - name: Set AWS Credentials
         run: |
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws configure set region us-east-1  
-      
+          aws configure set region us-east-1
+
       - name: Upload Update Product Deployment Artifact to S3
         run: |
           cd update-products
@@ -67,3 +69,5 @@ jobs:
               --deployment-group-name ecom-deploy-update \
               --s3-location bucket=deployment-ecom,key=update-products.zip,bundleType=zip \
               --region us-east-1
+              --file-exists-behavior OVERWRITE \
+              --appspec-file appspec.yml
