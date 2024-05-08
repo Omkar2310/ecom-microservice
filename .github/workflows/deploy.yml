@@ -36,7 +36,6 @@ jobs:
               --deployment-group-name ecom-deploy-add \
               --s3-location bucket=deployment-ecom,key=add-products.zip,bundleType=zip \
               --region us-east-1
-              --file-exists-behavior OVERWRITE \
               --appspec-file appspec.yml
 
   deploy_update_product:
@@ -69,5 +68,4 @@ jobs:
               --deployment-group-name ecom-deploy-update \
               --s3-location bucket=deployment-ecom,key=update-products.zip,bundleType=zip \
               --region us-east-1
-              --file-exists-behavior OVERWRITE \
               --appspec-file appspec.yml
