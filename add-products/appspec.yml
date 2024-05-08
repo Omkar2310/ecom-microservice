@@ -1,0 +1,9 @@
+version: 0.0
+Resources:
+  - LambdaFunction:
+      Type: AWS::Lambda::Function
+      Properties:
+        Name: add-product
+        Alias: Production
+        CurrentVersion: 1
+        TargetVersion: 2
