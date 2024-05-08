@@ -26,7 +26,7 @@ export const handler = async (event) => {
       statusCode: 200,
       body: JSON.stringify(params.Item),
     };
-
+    // test
     return response;
   } catch (error) {
     console.error("Failed to create product", error);
