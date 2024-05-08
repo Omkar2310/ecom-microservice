@@ -27,6 +27,8 @@ jobs:
         run: |
           cd add-products
           zip -r add-products.zip .
+          mv add-products.zip ../
+          cd ..          
           aws s3 cp add-products.zip s3://deployment-ecom/add-products.zip --region us-east-1
 
       - name: Create CodeDeploy Deployment for Add Product Lambda
@@ -36,7 +38,6 @@ jobs:
               --deployment-group-name ecom-deploy-add \
               --s3-location bucket=deployment-ecom,key=add-products.zip,bundleType=zip \
               --region us-east-1
-              --appspec-file appspec.yml
 
   deploy_update_product:
     runs-on: ubuntu-latest
@@ -59,6 +60,8 @@ jobs:
         run: |
           cd update-products
           zip -r update-products.zip .
+          mv update-products.zip ../
+          cd .. 
           aws s3 cp update-products.zip s3://deployment-ecom/update-products.zip --region us-east-1
 
       - name: Create CodeDeploy Deployment for Update Product Lambda
@@ -68,4 +71,3 @@ jobs:
               --deployment-group-name ecom-deploy-update \
               --s3-location bucket=deployment-ecom,key=update-products.zip,bundleType=zip \
               --region us-east-1
-              --appspec-file appspec.yml
